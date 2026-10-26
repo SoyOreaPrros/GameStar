@@ -44,6 +44,10 @@ class PruebasReportes(CasoGameStar):
         self.assertRegex(fila["fecha"], r"^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$")
         con.close()
 
+    def test_mas_vendidos_respeta_el_limite(self):
+        ranking = self.admin("reportes.mas_vendidos", limite=1)
+        self.assertLessEqual(len(ranking), 1)
+
 
 if __name__ == "__main__":
     unittest.main()
