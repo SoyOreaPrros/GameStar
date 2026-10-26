@@ -83,6 +83,13 @@ class PruebasReparaciones(CasoGameStar):
         self.assertEqual(r["filas"][0][1], "Luis Pérez")
         self.assertIsNone(r["aviso"])
 
+    def test_refacciones_disponibles_de_la_sucursal(self):
+        r = self.nueva()
+        refacciones = self.emp("reparaciones.refacciones_disponibles", idReparacion=r["idReparacion"])
+        self.assertEqual([f["nombre"] for f in refacciones], ["Joystick analógico"])
+        self.assertEqual(self.emp("reparaciones.refacciones_disponibles", idReparacion=r["idReparacion"],
+                                  texto="zzz"), [])
+
 
 if __name__ == "__main__":
     unittest.main()
