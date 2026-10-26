@@ -98,6 +98,11 @@ class PruebasVentas(CasoGameStar):
         self.assertIn("Mario Kart", texto)
         self.assertIn("2198.00", texto)
 
+    def test_productos_con_existencia_de_la_sucursal(self):
+        productos = self.emp("ventas.productos", texto="mario")
+        self.assertEqual([p["nombre"] for p in productos], ["Mario Kart"])
+        self.assertEqual(productos[0]["existencia"], 8)
+
 
 if __name__ == "__main__":
     unittest.main()
