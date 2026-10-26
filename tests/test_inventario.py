@@ -102,6 +102,10 @@ class PruebasInventario(CasoGameStar):
         self.assertLess(time.perf_counter() - inicio, 2.0)
         self.assertTrue(r["productos"])
 
+    def test_categorias_en_orden(self):
+        cats = self.emp("inventario.categorias")
+        self.assertEqual([c["nombre"] for c in cats], ["Videojuegos", "Consolas", "Accesorios"])
+
 
 if __name__ == "__main__":
     unittest.main()
